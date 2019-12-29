@@ -25,14 +25,15 @@ class App extends Component {
 	render() {
 		return (
 			<div>
+				<Search name="search-bar"> </Search>
+
 				<CardList name="Artem">
 					{this.state.monsters.map((x) => (
 						<h2 key={x.id}>
-							{x.name} and my I live on {x.address.street}
+							{x.name} On {x.address.street}
 						</h2>
 					))}
 				</CardList>
-				<Search name="search-bar"> </Search>
 			</div>
 		);
 	}
