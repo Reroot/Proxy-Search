@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Search } from "./comps/Search";
-
+import { CardList } from "./comps/card-list/card-list.jsx";
 class App extends Component {
 	constructor() {
 		super();
@@ -15,11 +15,14 @@ class App extends Component {
 			.then((response) => response.json())
 			.then((users) => this.setState({ monsters: users }));
 	}
+	//in between the tags of a comp is the children passed down from
 
 	render() {
 		return (
 			<div>
-				<Search />
+				<CardList name="Artem">Artem</CardList>
+				<Search name="search-bar"> </Search>
+
 				{this.state.monsters.map((x) => (
 					<h2 key={x.id}>
 						{x.name} and my I live on {x.address.street}
