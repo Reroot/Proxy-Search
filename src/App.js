@@ -17,17 +17,22 @@ class App extends Component {
 	}
 	//in between the tags of a comp is the children passed down from
 
+	// {this.state.monsters.map((x) => (
+	// 	<h2 key={x.id}>
+	// 		{x.name} and my I live on {x.address.street}
+	// 	</h2>
+	// ))}
 	render() {
 		return (
 			<div>
-				<CardList name="Artem">Artem</CardList>
+				<CardList name="Artem">
+					{this.state.monsters.map((x) => (
+						<h2 key={x.id}>
+							{x.name} and my I live on {x.address.street}
+						</h2>
+					))}
+				</CardList>
 				<Search name="search-bar"> </Search>
-
-				{this.state.monsters.map((x) => (
-					<h2 key={x.id}>
-						{x.name} and my I live on {x.address.street}
-					</h2>
-				))}
 			</div>
 		);
 	}
