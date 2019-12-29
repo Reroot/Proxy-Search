@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Search } from "./comps/Search";
 
 class App extends Component {
 	constructor() {
@@ -18,7 +19,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Hello, world!</h1>
+				<Search />
 				{this.state.monsters.map((x) => (
 					<h2 key={x.id}>
 						{x.name} and my I live on {x.address.street}
