@@ -32,12 +32,13 @@ class App extends Component {
 		const filteredMonsters = monsters.filter((monster) =>
 			monster.name.toLowerCase().includes(searchField.toLowerCase())
 		);
-
+		// {
+		// 	("pass it down to after filted and take it as prop in card componet");
+		// }
 		return (
 			<div className="App">
 				<h1>Monsters Rolodex</h1>
 				<SearchBox onSearchChange={this.onSearchChange} />
-				{"pass it down to after filted and take it as prop in card componet"}
 				<CardList monsters={filteredMonsters} />
 			</div>
 		);
