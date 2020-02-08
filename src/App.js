@@ -1,69 +1,44 @@
-import React, { Component } from "react";
-import "./App.css";
-import { Search } from "./comps/Search";
-import { CardList } from "./comps/card-list/card-list.jsx";
+import React, { Component } from 'react';
+
+import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/search-box/search-box.component';
+
+import './App.css';
+
 class App extends Component {
-	constructor() {
-		super();
-		this.state = {
-			monsters: [],
-			searchField: ""
-		};
-	}
+  constructor() {
+    super();
 
-	componentWillMount() {
-		fetch("https://jsonplaceholder.typicode.com/users")
-			.then((response) => response.json())
-			.then((users) => this.setState({ monsters: users }));
-	}
-	//in between the tags of a comp is the children passed down from
+    this.state = {
+      monsters: [],
+      searchField: ''
+    };
+  }
 
-	// {this.state.monsters.map((x) => (
-	// 	<h2 key={x.id}>
-	// 		{x.name} and my I live on {x.address.street}
-	// 	</h2>
-	// ))}
-	render() {
-		return (
-			<div>
-				<Search
-					name="search-bar"
-					type="search"
-					placeholder="Search Monster"
-					onChange={(e) =>
-						this.setState((this.state.searchField = e.target.value))
-					}
-				>
-					{console.log(this.state.searchField)}
-				</Search>
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({ monsters: users }));
+  }
 
-				<CardList name="Artem">
-					{this.state.monsters.map((x) => (
-						<h2 key={x.id}>
-							{x.name} On {x.address.street}
-						</h2>
-					))}
-				</CardList>
-			</div>
-		);
-	}
+  onSearchChange = event => {
+    this.setState({ searchField: event.target.value });
+  };
+
+  render() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter(monster =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+
+    return (
+      <div className='App'>
+        <h1>Monsters Rolodex</h1>
+        <SearchBox onSearchChange={this.onSearchChange} />
+        <CardList monsters={filteredMonsters} />
+      </div>
+    );
+  }
 }
 
 export default App;
-
-// monsters: [
-// 	{
-// 		id: "1",
-// 		name: "Haiixz",
-// 		killmove: "Phaser"
-// 	},
-// 	{
-// 		id: "2",
-// 		name: "Ioax",
-// 		killmove: "Lazer Trap"
-// 	},
-// 	{
-// 		id: "3",
-// 		name: "Qxa",
-// 		killmove: "Ioz zapper"
-// 	}
