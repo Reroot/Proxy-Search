@@ -6,7 +6,8 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			monsters: []
+			monsters: [],
+			searchField: ""
 		};
 	}
 
@@ -25,7 +26,16 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Search name="search-bar"> </Search>
+				<Search
+					name="search-bar"
+					type="search"
+					placeholder="Search Monster"
+					onChange={(e) =>
+						this.setState((this.state.searchField = e.target.value))
+					}
+				>
+					{console.log(this.state.searchField)}
+				</Search>
 
 				<CardList name="Artem">
 					{this.state.monsters.map((x) => (
