@@ -32,8 +32,8 @@ class App extends Component {
 
 	//must state contex for  normal functions methods, otherwise react will not give the scope
 	//But with arrow functions it auto binds to app componet
-	onSearchChange = (event) => {
-		this.setState({ searchField: event.target.value });
+	onSearchChange = (e) => {
+		this.setState({ searchField: e.target.value });
 	};
 	//Method is recalled/rerendered everytime something is typed, settign a new
 	//arry, and passing it , then it's dynamically updating.
